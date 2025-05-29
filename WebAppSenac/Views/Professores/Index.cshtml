@@ -1,13 +1,13 @@
-﻿@model IEnumerable<WebAppSenac.Models.Aluno>
+﻿@model IEnumerable<WebAppSenac.Models.Professor>
 
 @{
-    ViewData["Title"] = "Listagem de alunos";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Listagem de alunos</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Criar Novo</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Endereço)
+                @Html.DisplayNameFor(model => model.Disciplina)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Endereço)
+                @Html.DisplayFor(modelItem => item.Disciplina)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Telefone)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

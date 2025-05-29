@@ -7,26 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppSenac.Models;
 
-namespace WebAppSenac.Controllers
+namespace WebAppSenac.Views
 {
-    public class AlunosController : Controller
+    public class ProfessoresController : Controller
     {
         private readonly ContextoEscola _context;
 
-        public AlunosController(ContextoEscola context)
+        public ProfessoresController(ContextoEscola context)
         {
             _context = context;
         }
-       
 
-
-        // GET: Alunos
+        // GET: Professores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Alunos.ToListAsync());
+            return View(await _context.Professores.ToListAsync());
         }
 
-        // GET: Alunos/Details/5
+        // GET: Professores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +32,39 @@ namespace WebAppSenac.Controllers
                 return NotFound();
             }
 
-            var aluno = await _context.Alunos
+            var professor = await _context.Professores
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (aluno == null)
+            if (professor == null)
             {
                 return NotFound();
             }
 
-            return View(aluno);
+            return View(professor);
         }
 
-        // GET: Alunos/Create
+        // GET: Professores/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Alunos/Create
+        // POST: Professores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Endereço,Email,Telefone")] Aluno aluno)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Disciplina,Email,Telefone")] Professor professor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(aluno);
+                _context.Add(professor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(aluno);
+            return View(professor);
         }
 
-        // GET: Alunos/Edit/5
+        // GET: Professores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +72,22 @@ namespace WebAppSenac.Controllers
                 return NotFound();
             }
 
-            var aluno = await _context.Alunos.FindAsync(id);
-            if (aluno == null)
+            var professor = await _context.Professores.FindAsync(id);
+            if (professor == null)
             {
                 return NotFound();
             }
-            return View(aluno);
+            return View(professor);
         }
 
-        // POST: Alunos/Edit/5
+        // POST: Professores/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Endereço,Email,Telefone")] Aluno aluno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Disciplina,Email,Telefone")] Professor professor)
         {
-            if (id != aluno.Id)
+            if (id != professor.Id)
             {
                 return NotFound();
             }
@@ -98,12 +96,12 @@ namespace WebAppSenac.Controllers
             {
                 try
                 {
-                    _context.Update(aluno);
+                    _context.Update(professor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AlunoExists(aluno.Id))
+                    if (!ProfessorExists(professor.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +112,10 @@ namespace WebAppSenac.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(aluno);
+            return View(professor);
         }
 
-        // GET: Alunos/Delete/5
+        // GET: Professores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,34 +123,34 @@ namespace WebAppSenac.Controllers
                 return NotFound();
             }
 
-            var aluno = await _context.Alunos
+            var professor = await _context.Professores
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (aluno == null)
+            if (professor == null)
             {
                 return NotFound();
             }
 
-            return View(aluno);
+            return View(professor);
         }
 
-        // POST: Alunos/Delete/5
+        // POST: Professores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var aluno = await _context.Alunos.FindAsync(id);
-            if (aluno != null)
+            var professor = await _context.Professores.FindAsync(id);
+            if (professor != null)
             {
-                _context.Alunos.Remove(aluno);
+                _context.Professores.Remove(professor);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AlunoExists(int id)
+        private bool ProfessorExists(int id)
         {
-            return _context.Alunos.Any(e => e.Id == id);
+            return _context.Professores.Any(e => e.Id == id);
         }
     }
 }
