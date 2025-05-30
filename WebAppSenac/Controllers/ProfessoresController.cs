@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppSenac.Models;
 
-namespace WebAppSenac.Views
+namespace WebAppSenac.Controllers
 {
     public class ProfessoresController : Controller
     {

@@ -11,6 +11,6 @@ namespace WebAppSenac.Models
         public string NomeDisciplina { get; set; }
         [Required]
         [StringLength(100)]
-        public int CargaHoraria { get; set; }
+        public string CargaHoraria { get; set; }
     }
 }

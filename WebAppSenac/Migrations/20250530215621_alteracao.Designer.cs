@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppSenac.Models;
 
@@ -10,9 +11,11 @@ using WebAppSenac.Models;
 namespace WebAppSenac.Migrations
 {
     [DbContext(typeof(ContextoEscola))]
-    partial class ContextoEscolaModelSnapshot : ModelSnapshot
+    [Migration("20250530215621_alteracao")]
+    partial class alteracao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
